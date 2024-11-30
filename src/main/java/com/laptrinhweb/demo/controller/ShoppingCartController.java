@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ShoppingCartController {
 @RequestMapping("/shop-cart.html")
     public String Blog() {
-        return "shop-cart.html";
+        return "shoping-cart.html";
     }
 }
