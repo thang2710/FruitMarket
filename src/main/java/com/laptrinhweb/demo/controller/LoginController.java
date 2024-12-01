@@ -1,22 +1,21 @@
-// package com.laptrinhweb.demo.controller;
+package com.laptrinhweb.demo.controller;
 
-// import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 
-// @Controller
-// @RequestMapping("/login")
-// public class LoginController {
-// @GetMapping()
-// public String index() {
-//     return "redirect:/login";
-// }
+@Controller
+public class LoginController {
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 
-// @RequestMapping("/")
-//     public String Login() {
-//         return "login";
-//     }
-// }
+    @GetMapping("/home")
+    public String home() {
+        return "index";
+    }
+}
 
