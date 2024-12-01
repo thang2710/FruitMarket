@@ -1,1 +1,136 @@
-body{padding-top:20px;}
+/* Giới hạn chiều rộng của container và căn giữa */
+.container-fluid {
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    margin: 0 auto;    /* Căn giữa */
+    padding: 0 15px;   /* Thêm padding bên trái và phải */
+  }
+  
+  /* Điều chỉnh chiều cao của phần tử .h-custom */
+  .h-custom {
+    height: calc(100% - 73px); /* Điều chỉnh chiều cao */
+  }
+  
+  /* Đảm bảo layout trên các màn hình nhỏ */
+  @media (max-width: 450px) {
+    .h-custom {
+      height: 100%; /* Điều chỉnh chiều cao khi màn hình nhỏ */
+    }
+  }
+  
+  /* Căn giữa các phần tử trong form */
+  .form-outline {
+    max-width: 100%; /* Đảm bảo không kéo dài quá mức */
+    margin: 0 auto;  /* Căn giữa form */
+  }
+  
+  /* Các đường phân cách .divider */
+  .divider:after,
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 2px;   /* Tăng chiều cao của đường phân cách */
+    background: #eee;
+  }
+
+  /* Tăng kích thước chữ cho phần "Or" */
+    .divider p {
+    font-size: 1.8rem; /* Tăng kích thước chữ */
+    font-weight: bold; /* Làm cho chữ đậm hơn */
+    margin: 0; /* Loại bỏ khoảng cách xung quanh chữ */
+    padding: 0; /* Loại bỏ padding thừa */
+    }
+  
+  
+  /* Điều chỉnh kích thước và căn giữa các button */
+  .btn-floating {
+    border-radius: 50%;
+    padding: 1rem; /* Tăng padding */
+    font-size: 2rem; /* Tăng kích thước icon */
+  }
+  
+  .btn-primary {
+    padding-left: 3.5rem;  /* Tăng khoảng cách bên trái */
+    padding-right: 3.5rem; /* Tăng khoảng cách bên phải */
+    font-size: 1.5rem;     /* Tăng kích thước chữ */
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Căn chỉnh nội dung footer */
+  .d-flex.flex-column.flex-md-row.text-center.text-md-start.justify-content-between {
+    padding: 0 25px; /* Thêm padding cho footer */
+  }
+  
+  .text-white {
+    color: white;
+  }
+  
+  /* Căn giữa các phần tử trong form-login */
+  .form-outline .form-control-lg {
+    max-width: 100%; /* Đảm bảo không kéo dài quá mức */
+    font-size: 1.5rem; /* Tăng kích thước chữ */
+  }
+  
+  /* Chỉnh lại chiều cao của form và các input */
+  .form-outline input {
+    height: 65px;   /* Tăng chiều cao input */
+    padding: 1rem;  /* Tăng padding cho input */
+    font-size: 1.5rem; /* Tăng kích thước chữ */
+  }
+  
+  .form-label {
+    font-size: 1.5rem; /* Tăng kích thước chữ cho label */
+  }
+  
+  /* Tăng kích thước cho các phần tử trong footer */
+  .d-flex a {
+    font-size: 1.6rem; /* Tăng kích thước icon trong footer */
+    padding: 0.75rem;
+    margin: 0; /* Loại bỏ margin thừa */
+    display: inline-block; /* Đảm bảo các icon xếp ngang */
+  }
+  
+  /* Loại bỏ khoảng cách bên cạnh icon */
+  .d-flex a i {
+    margin: 0; /* Loại bỏ margin thừa giữa các icon */
+    padding: 0; /* Loại bỏ padding thừa */
+  }
+  
+  /* Nâng phần "Login" và "Remember me" lên */
+  .text-center.text-lg-start.mt-4.pt-2 {
+    margin-top: 2rem; /* Tăng khoảng cách phía trên */
+  }
+  
+  .d-flex.justify-content-between.align-items-center {
+    margin-bottom: 1rem; /* Tăng khoảng cách dưới phần "Remember me" */
+  }
+  
+  .form-check-label {
+    font-size: 1.5rem; /* Tăng kích thước chữ "Remember me" */
+  }
+  
+  /* Tăng khoảng cách cho nút Login */
+  .btn-primary.btn-lg {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-size: 1.6rem; /* Tăng kích thước chữ cho nút Login */
+  }
+  
+  /* Tăng kích thước phần "Sign in with" */
+  .lead.fw-normal.mb-0.me-3 {
+    font-size: 1.6rem; /* Tăng kích thước chữ cho phần "Sign in with" */
+    margin-bottom: 1.5rem; /* Thêm khoảng cách dưới phần "Sign in with" */
+  }
+  
+  /* Tăng kích thước phần "Don't have an account?" */
+  .small.fw-bold.mt-2.pt-1.mb-0 {
+    font-size: 1.4rem; /* Tăng kích thước chữ */
+    margin-top: 1.5rem; /* Thêm khoảng cách trên phần "Don't have an account?" */
+  }
+  
+  .link-danger {
+    font-size: 1.5rem; /* Tăng kích thước chữ cho liên kết "Register" */
+  }
+  
