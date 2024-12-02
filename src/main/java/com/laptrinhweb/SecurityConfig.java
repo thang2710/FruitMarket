@@ -24,17 +24,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
-            .requestMatchers("/", "/register", "/login").permitAll()  // Cho phép truy cập vào các trang đăng ký và login
-            .anyRequest().authenticated()  // Yêu cầu đăng nhập cho các trang khác
-        .and()
-        .formLogin()
-            .loginPage("/login")  // Trang đăng nhập tùy chỉnh
-            .permitAll()
-        .and()
-        .logout()
-            .permitAll();
-    return http.build();
+            .authorizeRequests()
+                // Cho phép truy cập không cần xác thực cho các trang tĩnh và trang đăng ký/login
+                .requestMatchers("/", "/register", "/login", "/css/**", "/js/**", "/ima/**","/sass/**", "/Source/**").permitAll()
+                // Yêu cầu xác thực cho tất cả các yêu cầu còn lại
+                .anyRequest().authenticated()
+            .and()
+            .formLogin()
+                .loginPage("/login")  // Trang đăng nhập tùy chỉnh
+                .defaultSuccessUrl("/home", true)  // Sau khi đăng nhập thành công, chuyển đến trang home (có thể thay đổi theo nhu cầu)
+                .permitAll()
+            .and()
+            .logout()
+                .permitAll();
+        
+        return http.build();
     }
 
     @Bean
@@ -47,6 +51,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();  // Mã hóa mật khẩu
     }
 }
+
 
 
 

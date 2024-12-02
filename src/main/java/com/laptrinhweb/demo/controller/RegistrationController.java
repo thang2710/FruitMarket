@@ -21,29 +21,29 @@ public class RegistrationController {
 
     @RequestMapping("/register")
     public String showRegistrationForm() {
-        return "register";  // Trả về trang đăng ký
+        return "register"; 
     }
 
     @PostMapping("/register")
     public String registerUser(@RequestParam String userName, @RequestParam String email, 
-                               @RequestParam String password, @RequestParam String confirmPassword) {
+                               @RequestParam String passWord, @RequestParam String confirmPassword) {
 
-        // Kiểm tra nếu mật khẩu và xác nhận mật khẩu khớp nhau
-        if (!password.equals(confirmPassword)) {
-            return "redirect:/register?error";  // Quay lại trang đăng ký nếu mật khẩu không khớp
+     
+        if (!passWord.equals(confirmPassword)) {
+            return "redirect:/register?error"; 
         }
 
-        // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
-        String encodedPassword = passwordEncoder.encode(password);
 
-        // Tạo đối tượng người dùng và lưu vào cơ sở dữ liệu
+        String encodedPassword = passwordEncoder.encode(passWord);
+
+       
         UserEntity user = new UserEntity();
-        user.setUserName(userName);  // Lưu tên đăng nhập
+        user.setUserName(userName);
         user.setEmail(email);
-        user.setPassWord(encodedPassword);  // Lưu mật khẩu mã hóa
+        user.setPassWord(encodedPassword);
 
         userRepository.save(user);
 
-        return "redirect:/login";  // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
+        return "redirect:/login";
     }
 }

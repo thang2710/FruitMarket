@@ -18,23 +18,23 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "username")
-	private String userName;
+	private String username;
 	@Column(name = "password")
-	private String passWord;
+	private String password;
 	@Column(name = "email")
 	private String email;
-	// @Column(name = "enabled")
-	// private Boolean enabled;
-	// @Column(name = "fullname")
-	// private String fullName;
-	// @Column(name = "gender")
-	// private Boolean gender;
-	// @Column(name = "birthday")
-	// private Date birthday;
-	// @Column(name = "address")
-	// private String address;
-	// @Column(name = "telephone")
-	// private String telephone;
+	@Column(name = "enabled")
+	private Boolean enabled;
+	@Column(name = "fullname")
+	private String fullName;
+	@Column(name = "gender")
+	private Boolean gender;
+	@Column(name = "birthday")
+	private Date birthday;
+	@Column(name = "address")
+	private String address;
+	@Column(name = "telephone")
+	private String telephone;
 	
 	// @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	// private Set<User_Role> userRoles;
@@ -43,26 +43,26 @@ public class UserEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserEntity(String userName, String passWord, String email) {
-		this.userName = userName;
-		this.passWord = passWord;
+	public UserEntity(String username, String password, String email) {
+		this.username = username;
+		this.password = password;
 		this.email = email;
 	}
 
-	// public UserEntity(Long id, String userName, String passWord, Boolean enabled, String fullName, Boolean gender,
-	// 		Date birthday, String address, String email, String telephone) {
-	// 	super();
-	// 	this.id = id;
-	// 	this.userName = userName;
-	// 	this.passWord = passWord;
-	// 	this.enabled = enabled;
-	// 	this.fullName = fullName;
-	// 	this.gender = gender;
-	// 	this.birthday = birthday;
-	// 	this.address = address;
-	// 	this.email = email;
-	// 	this.telephone = telephone;
-	// }
+	public UserEntity(Long id, String username, String password, Boolean enabled, String fullName, Boolean gender,
+			Date birthday, String address, String email, String telephone) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.fullName = fullName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.address = address;
+		this.email = email;
+		this.telephone = telephone;
+	}
 
 	public Long getId() {
 		return id;
@@ -73,19 +73,19 @@ public class UserEntity {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 
 	public String getPassWord() {
-		return passWord;
+		return password;
 	}
 	
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassWord(String password) {
+		this.password = password;
 	}
 	public String getEmail() {
 		return email;
@@ -95,54 +95,54 @@ public class UserEntity {
 		this.email = email;
 	}
 	
-	// public Boolean getEnabled() {
-		// 	return enabled;
-		// }
+	public Boolean getEnabled() {
+			return enabled;
+		}
 
-	// public void setEnabled(Boolean enabled) {
-	// 	this.enabled = enabled;
-	// }
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
-	// public String getFullName() {
-	// 	return fullName;
-	// }
+	public String getFullName() {
+		return fullName;
+	}
 
-	// public void setFullName(String fullName) {
-	// 	this.fullName = fullName;
-	// }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-	// public Boolean getGender() {
-	// 	return gender;
-	// }
+	public Boolean getGender() {
+		return gender;
+	}
 
-	// public void setGender(Boolean gender) {
-	// 	this.gender = gender;
-	// }
+	public void setGender(Boolean gender) {
+		this.gender = gender;
+	}
 
-	// public Date getBirthday() {
-	// 	return birthday;
-	// }
+	public Date getBirthday() {
+		return birthday;
+	}
 
-	// public void setBirthday(Date birthday) {
-	// 	this.birthday = birthday;
-	// }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
-	// public String getAddress() {
-	// 	return address;
-	// }
+	public String getAddress() {
+		return address;
+	}
 
-	// public void setAddress(String address) {
-	// 	this.address = address;
-	// }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 
-	// public String getTelephone() {
-	// 	return telephone;
-	// }
+	public String getTelephone() {
+		return telephone;
+	}
 
-	// public void setTelephone(String telephone) {
-	// 	this.telephone = telephone;
-	// }
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
 	
 }
 
