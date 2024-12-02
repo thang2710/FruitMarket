@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("/trangchu")
     public String indexPage() {
-        return "index"; // Trả về file templates/index.html
+        return "index";
     }
     @GetMapping("/blog")
     public String blogPage() {
@@ -38,13 +38,13 @@ public class HomeController {
         return "shoping-cart";
     }
 
-    @RequestMapping(value = "/login", method=RequestMethod.GET)
-    public String loginPage() {
-        return "form/login";
-    }
-    @RequestMapping(value = "/register", method=RequestMethod.GET)
-    public String registerPage() {
-        return "form/register";
-    }
+    // @RequestMapping(value = "/login", method=RequestMethod.GET)
+    // public String loginPage() {
+    //     return "form/login";
+    // }
+    // @RequestMapping(value = "/register", method=RequestMethod.GET)
+    // public String registerPage() {
+    //     return "form/register";
+    // }
     
 }

@@ -1,58 +1,65 @@
 package com.laptrinhweb;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.laptrinhweb.demo.service.CustomUserDetailsService;
+import lombok.AllArgsConstructor;
+
 
 @Configuration
+@AllArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
-
+    
+    @Autowired
     private final CustomUserDetailsService customUserDetailsService;
-
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
-        this.customUserDetailsService = customUserDetailsService;
-    }
-
+    
+    
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                // Cho phép truy cập không cần xác thực cho các trang tĩnh và trang đăng ký/login
-                .requestMatchers("/", "/register", "/login", "/css/**", "/js/**", "/ima/**","/sass/**", "/Source/**").permitAll()
-                // Yêu cầu xác thực cho tất cả các yêu cầu còn lại
-                .anyRequest().authenticated()
-            .and()
-            .formLogin()
-                .loginPage("/login")  // Trang đăng nhập tùy chỉnh
-                .defaultSuccessUrl("/home", true)  // Sau khi đăng nhập thành công, chuyển đến trang home (có thể thay đổi theo nhu cầu)
-                .permitAll()
-            .and()
-            .logout()
-                .permitAll();
-        
-        return http.build();
+    public UserDetailsService userDetailsService(){
+        return customUserDetailsService;
     }
-
+    
     @Bean
-    public UserDetailsService userDetailsService() {
-        return customUserDetailsService;  // Sử dụng CustomUserDetailsService để xác thực người dùng
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(customUserDetailsService);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
     }
-
+    
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();  // Mã hóa mật khẩu
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        return httpSecurity
+            .csrf(AbstractHttpConfigurer::disable)
+            .formLogin(httpForm ->{
+                httpForm.loginPage("/trangchu/login").permitAll();
+                httpForm.defaultSuccessUrl("/index",true);
+                
+            })
+    
+            
+            .authorizeHttpRequests(registry ->{
+                registry.requestMatchers("/trangchu/register","/css/**","/js/**","/fonts/**","/img/**","/sass/**", "/Source/**","/index").permitAll();
+                registry.anyRequest().authenticated();
+            })
+            .build();
+    }
+    
 }
-
-
-
-
-
