@@ -19,7 +19,7 @@ public class RegistrationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    @PostMapping(value = "/trangchu/register", consumes = "application/json")
+    @PostMapping(value = "/register", consumes = "application/json")
     public UserEntity createUser(@RequestBody UserEntity user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return myAppUserRepository.save(user);

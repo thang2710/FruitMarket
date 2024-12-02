@@ -2,17 +2,14 @@ package com.laptrinhweb.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-
-    @GetMapping("/trangchu")
-    public String indexPage() {
+    @GetMapping({"/", "/index"})
+    public String index() {
         return "index";
     }
+
     @GetMapping("/blog")
     public String blogPage() {
         return "blog";
@@ -38,13 +35,5 @@ public class HomeController {
         return "shoping-cart";
     }
 
-    // @RequestMapping(value = "/login", method=RequestMethod.GET)
-    // public String loginPage() {
-    //     return "form/login";
-    // }
-    // @RequestMapping(value = "/register", method=RequestMethod.GET)
-    // public String registerPage() {
-    //     return "form/register";
-    // }
     
 }

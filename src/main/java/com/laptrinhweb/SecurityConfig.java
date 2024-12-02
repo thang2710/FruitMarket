@@ -49,14 +49,14 @@ public class SecurityConfig {
         return httpSecurity
             .csrf(AbstractHttpConfigurer::disable)
             .formLogin(httpForm ->{
-                httpForm.loginPage("/trangchu/login").permitAll();
+                httpForm.loginPage("/login").permitAll();
                 httpForm.defaultSuccessUrl("/index",true);
                 
             })
     
             
             .authorizeHttpRequests(registry ->{
-                registry.requestMatchers("/trangchu/register","/css/**","/js/**","/fonts/**","/img/**","/sass/**", "/Source/**","/index").permitAll();
+                registry.requestMatchers("/register","/css/**","/js/**","/fonts/**","/img/**","/sass/**", "/Source/**","/index","/","blog","/**").permitAll();
                 registry.anyRequest().authenticated();
             })
             .build();
