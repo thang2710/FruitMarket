@@ -12,15 +12,19 @@ import org.springframework.stereotype.Service;
 import com.laptrinhweb.demo.entity.UserEntity;
 import com.laptrinhweb.demo.repository.UserRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+@AllArgsConstructor 
+public class CustomUserDetailsService implements UserDetailsService{
+    
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        Optional<UserEntity> user = repository.findByUsername(username);
+        Optional<UserEntity> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
             var userObj = user.get();
             return User.builder()
@@ -32,5 +36,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
     }
     
+    
+    
 }
+
 

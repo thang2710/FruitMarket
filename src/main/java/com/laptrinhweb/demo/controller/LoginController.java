@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
     @GetMapping("/login")
     public String login(){
-        return "/form/login";
+        return "form/login";
     }
     
-    @GetMapping("/register")
+    @GetMapping("/signup")
     public String signup(){
-        return "/form/register";
+        return "form/signup";
+    }
+    @GetMapping({"/","/index"})
+    public String home(){
+        return "index";
     }
     
 }

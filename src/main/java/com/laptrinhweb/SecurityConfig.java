@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.laptrinhweb.demo.service.CustomUserDetailsService;
-import lombok.AllArgsConstructor;
 
+import lombok.AllArgsConstructor;
 
 @Configuration
 @AllArgsConstructor
@@ -45,22 +45,19 @@ public class SecurityConfig {
     }
     
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        return httpSecurity
-            .csrf(AbstractHttpConfigurer::disable)
-            .formLogin(httpForm ->{
-                httpForm.loginPage("/login").permitAll();
-                httpForm.defaultSuccessUrl("/index",true);
-                
-            })
-    
-            
-            .authorizeHttpRequests(registry ->{
-                registry.requestMatchers("/register","/css/**","/js/**","/fonts/**","/img/**","/sass/**", "/Source/**","/index","/",
-                "blog","contact", "shop-grid", "/checkout", "shop-details", "/shoping-cart").permitAll();
-                registry.anyRequest().authenticated();
-            })
-            .build();
-    }
+public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    return httpSecurity
+        .csrf(AbstractHttpConfigurer::disable) // Vô hiệu hóa CSRF nếu không cần thiết
+        .formLogin(httpForm -> {
+            httpForm.loginPage("/login").permitAll(); // Trang đăng nhập tùy chỉnh
+            httpForm.defaultSuccessUrl("/index");    // Sau đăng nhập, chuyển tới /index
+        })
+        .authorizeHttpRequests(registry -> {
+            registry.requestMatchers("/", "/index", "/signup", "/css/**", "/js/**").permitAll(); // Mở quyền truy cập cho các trang này
+            registry.anyRequest().authenticated();  // Các trang khác yêu cầu đăng nhập
+        })
+        .build();
+}
+
     
 }
