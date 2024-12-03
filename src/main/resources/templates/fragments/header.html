@@ -25,7 +25,10 @@
                 </ul>
             </div>
             <div class="header__top__right__auth">
-                <a href="/login"><i class="fa fa-user"></i> Đăng Nhập</a>
+                <!-- Nếu người dùng đã đăng nhập, hiển thị tên đăng nhập -->
+                <span th:if="${username}" class="user-welcome">Chào, <span th:text="${username}"></span></span>
+                <!-- Nếu chưa đăng nhập, hiển thị liên kết đăng nhập -->
+                <a href="/login" th:if="${username == null}"><i class="fa fa-user"></i> Đăng nhập</a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -89,7 +92,10 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="/login"><i class="fa fa-user"></i> Đăng nhập</a>
+                                <!-- Nếu người dùng đã đăng nhập, hiển thị tên đăng nhập -->
+                            <span th:if="${username}" class="user-welcome">Chào, <span th:text="${username}"></span></span>
+                            <!-- Nếu chưa đăng nhập, hiển thị liên kết đăng nhập -->
+                            <a href="/login" th:if="${username == null}"><i class="fa fa-user"></i> Đăng nhập</a>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,5 @@
+*Lưu thông tin người dùng sau khi đăng nhập thành công: 
+   Spring Security sẽ tự động lưu thông tin người dùng 
+   sau khi đăng nhập thành công vào SecurityContext.
+   Bạn có thể sử dụng thông tin này để hiển thị tên người dùng trong giao diện.
+*Hiển thị tên người dùng trong giao diện: sử dụng Thymeleaf để hiển thị tên người dùng

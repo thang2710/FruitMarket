@@ -45,19 +45,19 @@ public class SecurityConfig {
     }
     
     @Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-    return httpSecurity
-        .csrf(AbstractHttpConfigurer::disable) // Vô hiệu hóa CSRF nếu không cần thiết
-        .formLogin(httpForm -> {
-            httpForm.loginPage("/login").permitAll(); // Trang đăng nhập tùy chỉnh
-            httpForm.defaultSuccessUrl("/index");    // Sau đăng nhập, chuyển tới /index
-        })
-        .authorizeHttpRequests(registry -> {
-            registry.requestMatchers("/", "/index", "/signup", "/css/**", "/js/**").permitAll(); // Mở quyền truy cập cho các trang này
-            registry.anyRequest().authenticated();  // Các trang khác yêu cầu đăng nhập
-        })
-        .build();
-}
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+            .csrf(AbstractHttpConfigurer::disable) // Vô hiệu hóa CSRF nếu không cần thiết
+            .formLogin(httpForm -> {
+                httpForm.loginPage("/login").permitAll(); // Trang đăng nhập tùy chỉnh
+                httpForm.defaultSuccessUrl("/index");    // Sau đăng nhập, chuyển tới /index
+            })
+            .authorizeHttpRequests(registry -> {
+                registry.requestMatchers("/", "/index", "/signup", "/css/**", "/js/**", "/**").permitAll(); // Mở quyền truy cập cho các trang này
+                registry.anyRequest().authenticated();  // Các trang khác yêu cầu đăng nhập
+            })
+            .build();
+    }
 
     
 }
