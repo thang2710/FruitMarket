@@ -1,27 +1,10 @@
 package com.laptrinhweb.demo.controller;
 
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.RequestMapping;
-=======
->>>>>>> test
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-<<<<<<< HEAD
-@RequestMapping("/home")
-    public String Home() {
-        return " index.html() ";
-    }
-}
-
-=======
-    // @GetMapping({"/", "/index"})
-    // public String index() {
-    //     return "index";
-    // }
-
     @GetMapping("/blog")
     public String blogPage() {
         return "blog";
@@ -49,4 +32,3 @@ public class HomeController {
 
     
 }
->>>>>>> test

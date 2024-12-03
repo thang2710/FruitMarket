@@ -53,7 +53,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws
             httpForm.defaultSuccessUrl("/index");    // Sau đăng nhập, chuyển tới /index
         })
         .authorizeHttpRequests(registry -> {
-            registry.requestMatchers("/", "/index", "/signup", "/css/**", "/js/**").permitAll(); // Mở quyền truy cập cho các trang này
+            registry.requestMatchers("/", "/index", "/signup", "/css/**", "/js/**", "/img**").permitAll(); // Mở quyền truy cập cho các trang này
             registry.anyRequest().authenticated();  // Các trang khác yêu cầu đăng nhập
         })
         .build();
