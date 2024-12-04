@@ -24,15 +24,12 @@ public class SecurityConfig {
     
     @Autowired
     private final CustomUserDetailsService customUserDetailsService;
-    
-    
     @Bean
     public UserDetailsService userDetailsService(){
         return customUserDetailsService;
     }
-    
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider(){          //xác thực thông tin người dùng
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(customUserDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
@@ -47,14 +44,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-            .csrf(AbstractHttpConfigurer::disable) // Vô hiệu hóa CSRF nếu không cần thiết
+            .csrf(AbstractHttpConfigurer::disable) // vô hiệu hóa CSRF nếu không cần thiết
             .formLogin(httpForm -> {
-                httpForm.loginPage("/login").permitAll(); // Trang đăng nhập tùy chỉnh
-                httpForm.defaultSuccessUrl("/index");    // Sau đăng nhập, chuyển tới /index
+                httpForm.loginPage("/login").permitAll(); // trang đăng nhập tùy chỉnh
+                httpForm.defaultSuccessUrl("/index");    // sau đăng nhập, chuyển tới /index
             })
-            .authorizeHttpRequests(registry -> {
+            .logout(logout -> {
+                logout.logoutUrl("/logout")           // Đặt URL logout
+                    .logoutSuccessUrl("/index");     // Sau khi đăng xuất, chuyển hướng về /index
+            })
+            .authorizeHttpRequests(registry -> {   //cấp quyền truy cập
                 registry.requestMatchers("/", "/index", "/signup", "/css/**", "/js/**", "/**").permitAll(); // Mở quyền truy cập cho các trang này
-                registry.anyRequest().authenticated();  // Các trang khác yêu cầu đăng nhập
+                registry.anyRequest().authenticated();  // các trang khác yêu cầu đăng nhập
             })
             .build();
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.laptrinhweb.demo.entity.UserEntity;
 
+//Truy vấn vào DB
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
     

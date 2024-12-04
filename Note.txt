@@ -1,3 +1,18 @@
+*Entity: ánh xạ vào csdl
+*Controller: xử lý các yêu cầu từ người dùng, gọi các phương thức của Service để lấy
+             dữ liệu, và trả về cho người dùng.
+*Repository: truy xuất dữ liệu từ cơ sở dữ liệu
+*Servie: xử lý các yêu cầu từ controller, kết nối với tầng Repository để lấy dữ liệu, 
+         xử lý, và trả về cho controller để gửi lại cho người dùng.
+
+**************************---Security---*******************************
+Cung cấp dịch vụ xác thực người dùng thông qua CustomUserDetailsService.
+Mã hóa mật khẩu người dùng.
+Cấu hình quyền truy cập cho các URL.
+Đặt trang đăng nhập và chuyển hướng sau khi đăng nhập thành công.
+
+
+***************************---Login---*******************************
 *Lưu thông tin người dùng sau khi đăng nhập thành công: 
    Spring Security sẽ tự động lưu thông tin người dùng 
    sau khi đăng nhập thành công vào SecurityContext.

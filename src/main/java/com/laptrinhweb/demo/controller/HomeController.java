@@ -18,7 +18,7 @@ public class HomeController {
         if (principal != null) {
             model.addAttribute("username", principal.getName());
         }
-        return "blog"; // Tên của file HTML của trang blog
+        return "blog";
     }
     @GetMapping("/contact")
     public String contactPage(Principal principal, Model model) {
