@@ -10,12 +10,14 @@
         <div class="humberger__menu__logo">
             <a href="#"><img src="img/logo.png" alt=""></a>
         </div>
-        <div class="humberger__menu__cart" th:if="${username != null}">
+        <div class="humberger__menu__cart" th:if="${user != null}">
+            <th:block th:if="${user.role=='ROLE_USER'}">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="/shoping-cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="/user/cart"><i class="fa fa-shopping-bag"></i> <span>[[${countCart}]]</span></a></li>
             </ul>
-            <div class="header__cart__price">Giỏ Hàng: <span>$150.00</span></div>
+            <div class="header__cart__price">Giỏ Hàng: <span>[[${totalOrderPrice}]]</span></div>
+            </th:block>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -26,17 +28,24 @@
             </div>
             <div class="header__top__right__auth">
                 <!-- Nếu người dùng đã đăng nhập, hiển thị tên đăng nhập với dropdown -->
-                <div class="dropdown" th:if="${username}">
+                <div class="dropdown" th:if="${user}">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Chào, <span th:text="${username}"></span>
+                        Chào, <span th:text="${user.name}"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="/profile">Thay đổi thông tin</a></li>
+                        <li th:if="${user.role=='ROLE_USER'}">
+                            <a class="dropdown-item" href="/user/profile">Thông tin tài khoản</a></li>
+                        <li th:if="${user.role=='ROLE_ADMIN'}">
+                            <a class="dropdown-item" href="/admin/profile">Thông tin tài khoản</a>
+                            <a class="dropdown-item" href="/admin/">Admin</a></li>
+                        <li th:if="${user.role=='ROLE_USER'}">
+                            <a class="dropdown-item" href="/user/cart">Giỏ hàng</a></li>
+                            <a class="dropdown-item" href="/user/user-orders">Đơn hàng</a></li>
                         <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
                     </ul>
                 </div>
                 <!-- Nếu chưa đăng nhập, hiển thị liên kết đăng nhập -->
-                <a href="/login" th:if="${username == null}"><i class="fa fa-user"></i> Đăng nhập</a>
+                <a href="/signin" th:if="${user == null}"><i class="fa fa-user"></i> Đăng nhập</a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -45,10 +54,8 @@
                 <li><a href="/shop-grid">Cửa Hàng</a></li>
                 <li><a href="#">Trang</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="/shop-details">Chi Tiết</a></li>
-                        <li><a href="/shoping-cart">Giỏ Hàng</a></li>
-                        <li><a href="/checkout">Kiểm Tra</a></li>
-                        <li><a href="/blog-details">Blog Chi Tiết</a></li>
+                        <li><a href="/user/cart">Giỏ Hàng</a></li>
+                        <li><a href="/user/user-orders">Đơn hàng</a></li>
                     </ul>
                 </li>
                 <li><a href="/blog">Blog</a></li>
@@ -101,17 +108,24 @@
                             </div>
                             <div class="header__top__right__auth">
                                 <!-- Nếu người dùng đã đăng nhập, hiển thị tên đăng nhập với dropdown -->
-                                <div class="dropdown" th:if="${username}">
+                                <div class="dropdown" th:if="${user}">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Chào, <span th:text="${username}"></span>
+                                        Chào, <span th:text="${user.name}"></span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="dropdown-item" href="/profile">Thay đổi thông tin</a></li>
+                                        <li th:if="${user.role=='ROLE_USER'}">
+                                            <a class="dropdown-item" href="/user/profile">Thông tin tài khoản</a></li>
+                                        <li th:if="${user.role=='ROLE_ADMIN'}">
+                                            <a class="dropdown-item" href="/admin/profile">Thông tin tài khoản</a>
+                                            <a class="dropdown-item" href="/admin/">Admin</a></li>
+                                        <li th:if="${user.role=='ROLE_USER'}">
+                                            <a class="dropdown-item" href="/user/cart">Giỏ hàng</a></li>
+                                            <a class="dropdown-item" href="/user/user-orders">Đơn hàng</a></li>
                                         <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nếu chưa đăng nhập, hiển thị liên kết đăng nhập -->
-                                <a href="/login" th:if="${username == null}"><i class="fa fa-user"></i> Đăng nhập</a>
+                                <a href="/signin" th:if="${user == null}"><i class="fa fa-user"></i> Đăng nhập</a>
                             </div>
                         </div>
                     </div>
@@ -132,10 +146,8 @@
                             <li><a href="/shop-grid">Cửa Hàng</a></li>
                             <li><a href="#">Trang</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="/shop-details">Chi Tiết</a></li>
-                                    <li><a href="/shoping-cart">Giỏ Hàng</a></li>
-                                    <li><a href="/checkout">Kiểm Tra</a></li>
-                                    <li><a href="/blog-details">Blog Details</a></li>
+                                    <li><a href="/user/cart">Giỏ Hàng</a></li>
+                                    <li><a href="/user/user-orders">Đơn hàng</a></li>
                                 </ul>
                             </li>
                             <li><a href="/blog">Blog</a></li>
@@ -144,12 +156,14 @@
                     </nav>
                 </div>
                 <div class="col-lg-3">
-                    <div class="header__cart" th:if="${username != null}">
+                    <div class="header__cart" th:if="${user != null}">
+                        <th:block th:if="${user.role=='ROLE_USER'}">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="/shoping-cart"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="/user/cart"><i class="fa fa-shopping-bag"></i> <span>[[${countCart}]]</span></a></li>
                         </ul>
-                        <div class="header__cart__price">Giỏ Hàng: <span>$150.00</span></div>
+                        <div class="header__cart__price">Giỏ Hàng: <span>[[${totalOrderPrice}]]đ</span></div>
+                        </th:block>
                     </div>
                 </div>
             </div>
@@ -168,31 +182,27 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>Danh mục</span>
                         </div>
                         <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
+                            <li><a href="#">Thịt Tươi</a></li>
+                            <li><a href="#">Rau Các Loại</a></li>
+                            <li><a href="#">Hoa Quả và Quà Tặng</a></li>
+                            <li><a href="#">Nho Tươi</a></li>
+                            <li><a href="#">Đồ Hải Sản</a></li>
+                            <li><a href="#">Bơ và Trứng</a></li>
+                            <li><a href="#">Đồ Ăn Nhanh</a></li>
+                            <li><a href="#">Hành Tươi</a></li>
+                            <li><a href="#">Đu đủ & Crisps</a></li>
+                            <li><a href="#">Ngũ Cốc</a></li>
+                            <li><a href="#">Chuối</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    Các Danh Mục 
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                            <form action="/shop-grid">
                                 <input type="text" placeholder="Bạn cần gì?">
                                 <button type="submit" class="site-btn">Tìm Kiếm</button>
                             </form>

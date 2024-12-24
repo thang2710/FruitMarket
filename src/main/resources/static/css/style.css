@@ -38,6 +38,15 @@ body {
 	font-smoothing: antialiased;
 }
 
+.custom-navbar {
+    background-color: #7FAD39; /* Màu xanh lá cây nhạt */
+}
+.text-decoration-line-through {
+    text-decoration: line-through;
+}
+
+
+
 h1,
 h2,
 h3,
@@ -73,6 +82,7 @@ h5 {
 h6 {
 	font-size: 16px;
 }
+
 
 p {
 	font-size: 16px;

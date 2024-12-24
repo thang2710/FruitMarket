@@ -5,6 +5,9 @@
 *Servie: xử lý các yêu cầu từ controller, kết nối với tầng Repository để lấy dữ liệu, 
          xử lý, và trả về cho controller để gửi lại cho người dùng.
 
+@Transient được sử dụng để đánh dấu một thuộc tính hoặc trường trong một thực thể (entity)
+         không được ánh xạ (persist) vào cơ sở dữ liệu.
+
 ---------------------------------Security--------------------------------
 Cung cấp dịch vụ xác thực người dùng thông qua CustomUserDetailsService.
 Mã hóa mật khẩu người dùng.

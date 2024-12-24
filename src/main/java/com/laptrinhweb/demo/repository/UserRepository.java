@@ -1,16 +1,20 @@
 package com.laptrinhweb.demo.repository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import com.laptrinhweb.demo.entity.UserEntity;
+import com.laptrinhweb.demo.entity.UserDtls;
 
-//Truy vấn vào DB
-@Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long>{
-    
-    Optional<UserEntity> findByUsername(String username);
-    
+public interface UserRepository extends JpaRepository<UserDtls, Integer> {
+
+	public UserDtls findByEmail(String email);
+
+	public List<UserDtls> findByRole(String role);
+
+	public UserDtls findByResetToken(String token);
+
+	public Boolean existsByEmail(String email);
+
+	
 }

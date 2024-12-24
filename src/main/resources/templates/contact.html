@@ -5,7 +5,7 @@
 
 <body>
     <!-- Header Section  -->
-    <div th:replace="fragments/header::header"></div>
+    <div th:replace="~{fragments/header::header}"></div>
 
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
@@ -107,7 +107,7 @@
     <!-- Contact Form End -->
 
     <!-- Footer Section Begin -->
-    <div th:replace="fragments/footer::footer"></div>
+    <div th:replace="~{fragments/footer::footer}"></div>
 
     <!-- Js Plugins -->
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
